@@ -1,0 +1,30 @@
+{
+  "name": "barber-shop-admin-backend",
+  "version": "1.0.0",
+  "description": "administration app for barber shops",
+  "main": "index.js",
+  "type": "module",  "scripts": {
+    "dev": "nodemon --watch index.js",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeanDevIV/barber-shop-admin-backend.git"
+  },
+  "author": "LeanDevIV & Brian Ojeda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeanDevIV/barber-shop-admin-backend/issues"
+  },
+  "homepage": "https://github.com/LeanDevIV/barber-shop-admin-backend#readme",
+  "dependencies": {
+    "argon2": "^0.44.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "express-validator": "^7.3.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.2",
+    "nodemon": "^3.1.10"
+  }
+}
