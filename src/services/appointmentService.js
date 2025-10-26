@@ -28,3 +28,35 @@ export const getAppointmentById = async (id) => {
     throw new Error("Error obteniendo cita: " + error.message);
   }
 };
+
+export const updateAppointment = async (id, data) => {
+  try {
+    const appointment = await Appointment.findByIdAndUpdate(
+      id, 
+      data, 
+      { new: true, runValidators: true }
+    ).populate('service', 'name description price duration');
+    
+    if (!appointment) {
+      throw new Error("Cita no encontrada");
+    }
+    
+    return appointment;
+  } catch (error) {
+    throw new Error("Error actualizando cita: " + error.message);
+  }
+};
+
+export const deleteAppointment = async (id) => {
+  try {
+    const appointment = await Appointment.findByIdAndDelete(id);
+    
+    if (!appointment) {
+      throw new Error("Cita no encontrada");
+    }
+    
+    return { message: "Cita eliminada exitosamente" };
+  } catch (error) {
+    throw new Error("Error eliminando cita: " + error.message);
+  }
+};
