@@ -9,11 +9,14 @@ export const createAppointment = async (data) => {
   }
 };
 
-export const getAllAppointments = async () => {
+export const getAllAppointments = async (page = 1, limit = 9) => {
   try {
+    const skip = (page - 1) * limit;
     return await Appointment.find()
       .populate('service', 'name description price duration')
-      .exec();
+      .exec()
+      .limit(limit)
+      .skip(skip);
   } catch (error) {
     throw new Error("Error obteniendo citas: " + error.message);
   }
