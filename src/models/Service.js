@@ -30,6 +30,7 @@ const ServiceSchema = new mongoose.Schema(
 
 export default mongoose.model("Service", ServiceSchema);
 
+
 //Listar los servicios ofrecidos (ej. corte, color, afeitado).
 
 //Agregar nuevos servicios.
@@ -37,3 +38,4 @@ export default mongoose.model("Service", ServiceSchema);
 //Modificar nombre, precio y duración.
 
 //Eliminar servicios obsoletos.
+

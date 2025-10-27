@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "administration app for barber shops",
   "main": "index.js",
-  "type": "module",  "scripts": {
+  "type": "module",
+  "scripts": {
     "dev": "nodemon --watch index.js",
     "start": "node index.js",
     "seed": "node scripts/seed.js",
@@ -22,6 +23,7 @@
   "dependencies": {
     "argon2": "^0.44.0",
     "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "express-validator": "^7.3.0",
     "jsonwebtoken": "^9.0.2",
