@@ -9,7 +9,7 @@ export const createAppointment = async (data) => {
   }
 };
 
-export const getAllAppointments = async (page = 1, limit = 9) => {
+export const getAllAppointments = async (page = 1, limit = 10) => {
   try {
     const skip = (page - 1) * limit;
     return await Appointment.find()
