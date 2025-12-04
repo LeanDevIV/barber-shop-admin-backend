@@ -17,8 +17,14 @@ const AppointmentSchema = new Schema(
     service: {
       type: Schema.Types.ObjectId,
       ref: "service",
-      price: Number,
-      duration: Number,
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
+    duration: {
+      type: Number,
+      required: true,
     },
     date: {
       type: Date,
@@ -40,28 +46,20 @@ const AppointmentSchema = new Schema(
     notes: {
       type: String,
       trim: true,
+      default: "",
+      max: [255, "El comentario debe tener menos de 255 caracteres"],
     },
     //tracking
     total: {
       type: Number,
       default: 0,
-    },
-    paymentMethod: {
-      type: String,
-      enum: ["cash", "card", "transfer"],
-      default: "cash",
-    },
-    paymentStatus: {
-      type: String,
-      enum: ["pending", "paid", "cancelled"],
-      default: "pending",
-    },
-    paymentDate: {
-      type: Date,
-      default: Date.now,
+      min: [0, "El total debe ser mayor a 0"],
     },
   },
   { timestamps: true }
 );
-
+AppointmentSchema.index({ barberShop: 1 }, { unique: true });
+AppointmentSchema.index({ client: 1 }, { unique: true });
+AppointmentSchema.index({ barber: 1 }, { unique: true });
+AppointmentSchema.index({ service: 1 }, { unique: true });
 export const AppointmentModel = model("appointment", AppointmentSchema);

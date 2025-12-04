@@ -2,11 +2,11 @@ import { Schema, model } from "mongoose";
 
 const PaymentSchema = new Schema(
   {
-    barbershop: { type: Schema.ObjectId, ref: "barberShop" },
-    client: { type: Schema.ObjectId, ref: "user" },
-    barber: { type: Schema.ObjectId, ref: "user" },
-    service: { type: Schema.ObjectId, ref: "service" },
-    appointment: { type: Schema.ObjectId, ref: "appointment" },
+    barbershop: { type: Schema.Types.ObjectId, ref: "barberShop" },
+    client: { type: Schema.Types.ObjectId, ref: "user" },
+    barber: { type: Schema.Types.ObjectId, ref: "user" },
+    service: { type: Schema.Types.ObjectId, ref: "service" },
+    appointment: { type: Schema.Types.ObjectId, ref: "appointment" },
     amount: Number,
     paymentDate: Date,
     paymentMethod: { type: String, enum: ["cash", "card", "transfer"] },
@@ -23,5 +23,8 @@ const PaymentSchema = new Schema(
   },
   { timestamps: true }
 );
-
+PaymentSchema.index({ barbershop: 1, paymentDate: -1 });
+PaymentSchema.index({ barber: 1, paymentDate: -1 });
+PaymentSchema.index({ appointment: 1 });
+PaymentSchema.index({ client: 1 });
 export const PaymentModel = model("payment", PaymentSchema);

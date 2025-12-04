@@ -32,6 +32,12 @@ const UsersSchema = new Schema(
       enum: ["owner", "employee", "client"],
       default: "client",
     },
+    especialty: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "service",
+      },
+    ],
     active: {
       type: Boolean,
       default: true,
@@ -54,14 +60,11 @@ const UsersSchema = new Schema(
       trim: true,
       select: false, // No incluir en las consultas por defecto
     },
-    especialty: {
-      type: Schema.Types.ObjectId,
-      ref: "service",
-    },
   },
   { timestamps: true }
 );
-
+UsersSchema.index({ barbershop: 1, role: 1 });
+UsersSchema.index({ email: 1 });
 // Middleware para hashear la contraseña antes de guardar
 UsersSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {

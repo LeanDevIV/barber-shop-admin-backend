@@ -46,5 +46,6 @@ const BarbershopSchema = new Schema(
   },
   { timestamps: true }
 );
-
+BarbershopSchema.index({ email: 1 }, { unique: true });
+BarbershopSchema.index({ owner: 1 }, { unique: true });
 export const BarbershopModel = model("barberShop", BarbershopSchema);

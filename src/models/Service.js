@@ -14,10 +14,12 @@ const ServiceSchema = new Schema(
     price: {
       type: Number,
       required: true,
+      min: [0, "El precio debe ser mayor a 0"],
     },
     duration: {
       type: Number,
       required: true,
+      min: [0, "La duración debe ser mayor a 0"],
     },
     category: {
       type: String,
@@ -39,5 +41,6 @@ const ServiceSchema = new Schema(
   },
   { timestamps: true }
 );
-
+ServiceSchema.index({ barbershop: 1, active: 1 });
+ServiceSchema.index({ timesReserved: -1 });
 export const ServiceModel = model("service", ServiceSchema);

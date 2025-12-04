@@ -2,6 +2,9 @@ import { Schema, model } from "mongoose";
 
 const DailyStatsSchema = new Schema(
   {
+    //Barbershop
+    barbershop: { type: Schema.ObjectId, ref: "barberShop" },
+    date: { type: Date, required: true },
     //Revenue
     TotalRevenue: Number,
     revenueByMethod: {
@@ -22,8 +25,6 @@ const DailyStatsSchema = new Schema(
     performanceByEmployee: [
       {
         employee: { type: Schema.Types.ObjectId, ref: "user" },
-      },
-      {
         total: Number,
         services: Number,
         comissions: Number,
@@ -37,5 +38,5 @@ const DailyStatsSchema = new Schema(
   },
   { timestamps: true }
 );
-
+DailyStatsSchema.index({ barbershop: 1, date: -1 }, { unique: true });
 export const DailyStatsModel = model("dailyStats", DailyStatsSchema);
